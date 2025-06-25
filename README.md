@@ -1,119 +1,231 @@
 💸 Expense Tracker - Full Stack Application
-A full-stack MERN (MongoDB, Express, React, Node.js) application for tracking personal income and expenses. The app allows users to register, log in, add income/expenses, and visualize spending via charts.
+A feature-rich Expense Tracker built with the MERN stack (MongoDB, Express, React, Node.js). This app helps users manage their finances by tracking income and expenses, generating summaries, visualizing trends, and even exporting data.
 
-📂 Project Structure
+📦 Contents of the ZIP File
+The zip file (Expensee - Copy.zip) contains two major folders:
+
 Expensee - Copy/
-├── backend/ # Express + MongoDB REST API
-└── frontend/
-└── expense-tracker/ # React + TailwindCSS frontend with Vite
+├── backend/                # Node.js + Express REST API
+└── frontend/expense-tracker/ # React + Vite frontend UI
 
-🔧 Tech Stack
-🔹 Frontend
-React (Vite)
+🧠 Features Overview
+👤 User Management
+Registration & Login with secure JWT-based authentication
 
-Tailwind CSS
+Middleware-protected routes for user access control
 
-Recharts (Data visualization)
+💰 Expense & Income Management
+Add new income/expense entries
 
-React Router DOM
+Edit and delete transactions
 
-Axios
+Categorized storage of income and expenses
 
-Emoji Picker
+Upload XLSX files containing income or expense data
 
-🔹 Backend
-Node.js + Express
+View history of transactions with filters
 
-MongoDB (via Mongoose)
+📈 Dashboard & Visualization
+View total balance, total income, total expenses
 
-JWT (Authentication)
+Pie charts and visual breakdowns of income vs expenses
 
-Multer (File uploads)
+Responsive UI using Tailwind CSS
 
-XLSX (Data export)
+📂 Data Handling
+Upload Excel (.xlsx) files for expenses and incomes
 
-🚀 Getting Started
-✅ Prerequisites
-Node.js & npm
+Backend parses and inserts data into MongoDB
 
-MongoDB URI (Atlas or local)
+Download data from backend if needed (via API)
 
-📦 Backend Setup
+⚙️ Folder Details
+✅ 1. backend/
+This folder contains the Node.js + Express backend that provides REST APIs.
+
+Key Files:
+
+server.js: Main server entry
+
+controllers/: Logic for auth, income, expense, dashboard
+
+models/: Mongoose schemas
+
+middleware/: Auth + file upload logic
+
+config/db.js: MongoDB connection
+
+.env: Environment variables (create this yourself)
+
+Dependencies Used:
+
+express, mongoose, jsonwebtoken, multer, cors, bcryptjs, xlsx
+
+✅ 2. frontend/expense-tracker/
+This is the React + Vite frontend app with clean, modern UI.
+
+Key Files:
+
+src/components/: All reusable components
+
+src/pages/: Dashboard, Login, Register, etc.
+
+src/utils/apiPaths.js: Contains BASE_URL to your backend
+
+index.html and vite.config.js: For Vite config
+
+Dependencies Used:
+
+axios, tailwindcss, recharts, react-icons, emoji-picker-react, moment
+
+🛠️ Local Setup Guide
+1️⃣ Backend Setup
 cd backend
 npm install
 
-
-Create a .env file:
+Create a .env file inside backend/:
 
 PORT=8000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret
+MONGO_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_jwt_secret
 
-
-Run locally:
+Start the backend:
 
 npm run dev
 
+Note: Make sure MongoDB Atlas access is set to 0.0.0.0/0 under Network Access for development.
 
-🎨 Frontend Setup
+2️⃣ Frontend Setup
 cd frontend/expense-tracker
 npm install
 
+Update this file:
 
-Update src/utils/apiPaths.js:
+src/utils/apiPaths.js
 
-export const BASE_URL = "https://your-backend-url.com";
+Set:
 
+export const BASE_URL = "https://your-backend-url.onrender.com";
 
-Run locally:
+Start frontend locally:
 
 npm run dev
 
+☁️ Deployment Guide
+Frontend → Vercel
+Push your repo to GitHub
 
-Build for production:
+Go to https://vercel.com
 
-npm run build
+Import project
 
+Set:
 
-☁️ Deployment
-Frontend (Vercel)
-Deploy /frontend/expense-tracker directory
+Root: frontend/expense-tracker
 
-Set build command: npm run build
+Build command: npm run build
 
-Set output directory: dist
+Output directory: dist
 
-Backend (Render / Railway)
-Deploy /backend
+Click Deploy
 
-Set build command: npm install
+Backend → Render
+Go to https://render.com
 
-Set start command: node server.js
+New → Web Service
 
-Add environment variables in dashboard
+Set:
 
-📊 Features
-👤 User Registration and Login
+Root: backend
 
-🔐 JWT-based Authentication
+Build command: npm install
 
-💰 Add/Edit/Delete Income and Expenses
+Start command: node server.js
 
-📈 Dashboard with Charts (Income vs Expense)
+Add .env variables in dashboard
 
-📦 Data upload/download (Excel)
+Deploy and get your backend URL
 
-☁️ Cloud-hosted frontend + backend
+🔐 Security Notes
+All sensitive environment data (DB URI, JWT secret) is kept in .env
 
-🗃️ Scripts
+Backend uses CORS and Auth middleware to restrict access
+
+MongoDB access is secure with username/password (never exposed in frontend)
+
+Recommended to allow access to MongoDB from specific IPs or use backend-only access
+
+🧪 Example API Endpoints
+Base URL: https://your-backend-url.com
+
+Endpoint
+
+Method
+
+Description
+
+/api/auth/register
+
+POST
+
+Register a new user
+
+/api/auth/login
+
+POST
+
+Login and get JWT token
+
+/api/income
+
+POST
+
+Add new income
+
+/api/expense
+
+POST
+
+Add new expense
+
+/api/dashboard
+
+GET
+
+Fetch summary
+
+/api/income/upload
+
+POST
+
+Upload income Excel
+
+/api/expense/upload
+
+POST
+
+Upload expense Excel
+
+📜 Scripts Reference
 Backend
-npm start – Start server
+npm run dev: Start server with nodemon
 
-npm run dev – Start with nodemon
+npm start: Start server normally
 
 Frontend
-npm run dev – Start Vite dev server
+npm run dev: Run Vite dev server
 
-npm run build – Build production app
+npm run build: Create production build
 
-npm run preview – Preview production build
+npm run preview: Preview built site
+
+✅ Summary
+This project is:
+
+📦 Modular and well-organized
+
+🎨 UI-rich and responsive
+
+🌍 Deployable on modern hosting (Vercel + Render)
+
+🔒 Secure and extensible
